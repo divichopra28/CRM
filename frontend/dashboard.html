@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM — Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h1>📋 CRM Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+  </nav>
+
+  <div class="container">
+    <!-- STATS -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">Total Leads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statNew">0</div>
+        <div class="stat-label">New</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statContacted">0</div>
+        <div class="stat-label">Contacted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statConverted">0</div>
+        <div class="stat-label">Converted</div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="filter-group">
+        <button class="filter-btn active" data-status="">All</button>
+        <button class="filter-btn" data-status="new">New</button>
+        <button class="filter-btn" data-status="contacted">Contacted</button>
+        <button class="filter-btn" data-status="converted">Converted</button>
+      </div>
+      <button class="btn-primary" id="addLeadBtn">+ Add Lead</button>
+    </div>
+
+    <!-- LEADS TABLE -->
+    <div class="leads-table-wrapper">
+      <table class="leads-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <span>📭</span>
+        No leads found. Click "+ Add Lead" to get started.
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT LEAD MODAL -->
+  <div class="modal-overlay" id="leadModal">
+    <div class="modal">
+      <h2 id="modalTitle">Add New Lead</h2>
+      <form id="leadForm">
+        <input type="hidden" id="leadId" />
+        <div class="form-group">
+          <label for="leadName">Name *</label>
+          <input type="text" id="leadName" required />
+        </div>
+        <div class="form-group">
+          <label for="leadEmail">Email *</label>
+          <input type="email" id="leadEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="leadPhone">Phone</label>
+          <input type="text" id="leadPhone" />
+        </div>
+        <div class="form-group">
+          <label for="leadCompany">Company</label>
+          <input type="text" id="leadCompany" />
+        </div>
+        <div class="form-group">
+          <label for="leadMessage">Message</label>
+          <textarea id="leadMessage" rows="3"></textarea>
+        </div>
+        <div class="form-group" id="statusGroup" style="display:none">
+          <label for="leadStatus">Status</label>
+          <select id="leadStatus">
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="converted">Converted</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancelModal">Cancel</button>
+          <button type="submit" class="btn-primary" id="saveBtn">Save Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LEAD DETAIL MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal">
+      <h2>Lead Details</h2>
+      <div id="detailContent"></div>
+      <div class="detail-section">
+        <h3>Follow-up Notes</h3>
+        <ul class="followup-list" id="followupList"></ul>
+        <div class="followup-input-group">
+          <input type="text" id="followupInput" placeholder="Add a follow-up note…" />
+          <button id="addFollowupBtn">Add</button>
+        </div>
+      </div>
+      <div class="modal-actions" style="margin-top:20px">
+        <button type="button" class="btn-secondary" id="closeDetail">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
