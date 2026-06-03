@@ -1,4 +1,4 @@
-# Divi CRM
+#  CRM
 
 A lightweight CRM (Customer Relationship Management) application for managing leads, tracking statuses, and recording follow-up notes. Built with a Node.js/Express backend, MongoDB database, and a vanilla HTML/CSS/JS frontend.
 
